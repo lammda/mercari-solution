@@ -1,0 +1,29 @@
+1 why y_tr = np.log1p(y_tr)
+    回归问题下，有很多算法都会假设 y 服从正态分布，比如linear regression，bayesian neural network，mixture models,
+    mlp用linear做输出层（平方损失）等。如果 y 服从正态分布，那么就不用考虑算法差异，几乎可以适应所有算法。
+
+    用 log1p，主要是将y的分布调整到接近 normally distribution，或者接近 log-normal，而且有大量的真实数据，是接近log-normal
+    分布的。
+
+    sklearn自带一个例子说明为什么要做log1p：https://scikit-learn.org/stable/auto_examples/compose/plot_transformed_target.html
+    log-normal distribution的wiki：https://en.wikipedia.org/wiki/Log-normal_distribution
+
+    另：对y做transform 的 trick 不太多，正确的掌握trick的用法就能解决绝大多问题。更多是 art，少部分是 science。
+    另2：
+
+2
+MLP is subset of DNN. While DNN can have loops and MLP are always feed-forward
+对 mlp 的实战性建议与answer：http://www.faqs.org/faqs/ai-faq/neural-nets/part2/
+
+
+第一我们要有逐层的处理；
+第二我们要有特征的内部变化；
+第三，我们要有足够的模型复杂度。
+
+pre-train + rbm
+relu + dropout：有效抑制梯度消失
+choromanska 证明局部最小值通常不是大问题，消除了神经网络局部极值的担忧。
+后面像GAN，GNMT，CapsNet等了网络结构层出不穷。
+神经网络的历史和未来展望，这个帖子写的很好：
+https://zhuanlan.zhihu.com/p/29435406  # 浅析 Hinton 最近提出的 Capsule 计划
+
